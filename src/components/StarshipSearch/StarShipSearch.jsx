@@ -1,13 +1,14 @@
 import { useState } from "react";
 const StarshipSearch = (props) => {
-	const [query, setQuery] = useState("");
-
+	const [searchText, setSearchText] = useState("");
 	const handleChange = (e) => {
-		setQuery(e.target.value);
+		setSearchText(e.target.value);
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		props.filterShips(query);
+		props.setQuery(searchText);
+		props.filterShips(searchText);
+		setSearchText("");
 	};
 
 	return (
@@ -20,6 +21,7 @@ const StarshipSearch = (props) => {
 					type="text"
 					name="starshipName"
 					id="starshipName"
+					value={searchText}
 					onChange={handleChange}
 				/>
 				<button type="submit">Search </button>

@@ -7,6 +7,7 @@ const App = () => {
 	//states
 	const [starshipsData, setStarshipsData] = useState([]);
 	const [displayedStarships, setDisplayedStarships] = useState([]);
+	const [query, setQuery] = useState("");
 
 	const filterShips = (query) => {
 		const filteredStarships = starshipsData.filter((starship) => {
@@ -27,8 +28,12 @@ const App = () => {
 
 	return (
 		<section className="container">
-			<StarshipSearch filterShips={filterShips} />
-			<StarshipList starships={displayedStarships} />
+			<StarshipSearch
+				filterShips={filterShips}
+				query={query}
+				setQuery={setQuery}
+			/>
+			<StarshipList starships={displayedStarships} query={query} />
 		</section>
 	);
 };
