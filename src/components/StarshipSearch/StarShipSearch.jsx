@@ -10,6 +10,11 @@ const StarshipSearch = (props) => {
 		props.filterShips(searchText);
 		setSearchText("");
 	};
+	const handleReset = (e) => {
+		setSearchText("");
+		props.setQuery("");
+		props.filterShips("");
+	};
 
 	return (
 		<form onSubmit={handleSubmit}>
@@ -26,6 +31,9 @@ const StarshipSearch = (props) => {
 				/>
 				<button type="submit">Search </button>
 			</fieldset>
+			<button type="reset" onClick={handleReset}>
+				show all ships
+			</button>
 		</form>
 	);
 };
