@@ -7,6 +7,14 @@ const App = () => {
 	//states
 	const [starshipsData, setStarshipsData] = useState([]);
 	const [displayedStarships, setDisplayedStarships] = useState([]);
+
+	const filterShips = (query) => {
+		const filteredStarships = starshipsData.filter((starship) => {
+			return starship.name.toLowerCase().includes(query.toLowerCase());
+		});
+		setDisplayedStarships(filteredStarships);
+	};
+
 	// fetch data
 	useEffect(() => {
 		const fetchData = async () => {
@@ -18,8 +26,8 @@ const App = () => {
 	}, []);
 
 	return (
-		<section className="container centered">
-			<StarshipSearch />
+		<section className="container">
+			<StarshipSearch filterShips={filterShips} />
 			<StarshipList starships={displayedStarships} />
 		</section>
 	);
